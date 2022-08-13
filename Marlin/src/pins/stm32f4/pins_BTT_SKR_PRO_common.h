@@ -345,8 +345,8 @@
 //
 #if SD_CONNECTION_IS(LCD)
 
-  #define SD_DETECT_PIN              EXP2_07_PIN
-  #define SDSS                       EXP2_04_PIN
+  #define SD_DETECT_PIN              PF12
+  #define SDSS                       PB12
 
 #elif SD_CONNECTION_IS(ONBOARD)
 
