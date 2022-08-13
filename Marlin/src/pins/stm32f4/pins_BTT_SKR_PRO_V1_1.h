@@ -26,5 +26,19 @@
 #endif
 
 #define BOARD_INFO_NAME "BTT SKR Pro V1.1"
+// DOUG - Missing Pin declaration added 8/11/2022
+#define TFT_CS_PIN                     PB12
+      #define TFT_A0_PIN                     PB10
+      #define TFT_SCK_PIN                    PB13
+      #define TFT_MISO_PIN                   PB14
+      #define TFT_MOSI_PIN                   PB15
+
+      #define TOUCH_INT_PIN                  PG6
+      #define TOUCH_MISO_PIN                 PG1
+      #define TOUCH_MOSI_PIN                 PC10
+      #define TOUCH_SCK_PIN                  PG8
+      #define TOUCH_CS_PIN                   PA8
+      #define BTN_EN1                        PD10
+      #define BTN_EN2                        PH10
 
 #include "pins_BTT_SKR_PRO_common.h"
