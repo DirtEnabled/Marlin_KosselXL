@@ -265,7 +265,7 @@ extern "C" {
 #define ENABLE_HWSERIAL6
 
 // Define here Serial instance number to map on Serial generic name (if not already used by SerialUSB)
-#define SERIAL_UART_INSTANCE    1 //1 for Serial = Serial1 (USART1)
+#define SERIAL_UART_INSTANCE    6 //1 for Serial = Serial1 (USART1)
 
 // DEBUG_UART could be redefined to print on another instance than 'Serial'
 //#define DEBUG_UART              ((USART_TypeDef *) U(S)ARTX) // ex: USART3
