@@ -98,7 +98,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT -1  //Serial
+#define SERIAL_PORT 6  //WIFI
 
 /**
  * Serial Port Baud Rate
@@ -111,7 +111,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 250000
+#define BAUDRATE 115200
 
 //#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
 
@@ -120,15 +120,15 @@
  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT_2 1    //USB
-#define BAUDRATE_2 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
+#define SERIAL_PORT_2 1    //TFT
+#define BAUDRATE_2 250000  // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
 
 /**
  * Select a third serial port on the board to use for communication with the host.
  * Currently only supported for AVR, DUE, LPC1768/9 and STM32/STM32F1
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT_3 6     //WiFi
+#define SERIAL_PORT_3 -1     //USB
 #define BAUDRATE_3 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
 
 // Enable the Bluetooth serial interface on AT90USB devices
@@ -818,7 +818,7 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-//#define PREVENT_COLD_EXTRUSION //Doug Turn on after working out bugs
+#define PREVENT_COLD_EXTRUSION 
 #define EXTRUDE_MINTEMP 170
 
 /**
@@ -889,15 +889,15 @@
   #define DELTA_SEGMENTS_PER_SECOND 160
 
   // After homing move down to a height where XY movement is unconstrained
-  //#define DELTA_HOME_TO_SAFE_ZONE
+  #define DELTA_HOME_TO_SAFE_ZONE
 
   // Delta calibration menu
   // uncomment to add three points calibration menu option.
   // See http://minow.blogspot.com/index.html#4918805519571907051
-  //#define DELTA_CALIBRATION_MENU
+  #define DELTA_CALIBRATION_MENU
 
   // uncomment to add G33 Delta Auto-Calibration (Enable EEPROM_SETTINGS to store results)
-  //#define DELTA_AUTO_CALIBRATION
+  #define DELTA_AUTO_CALIBRATION
 
   // NOTE NB all values for DELTA_* values MUST be floating point, so always have a decimal point in them
 
@@ -915,18 +915,18 @@
   #define DELTA_PRINTABLE_RADIUS 140.0    // (mm)
 
   // Maximum reachable area
-  #define DELTA_MAX_RADIUS       140.0    // (mm)
+  #define DELTA_MAX_RADIUS       150.00    // (mm)
 
   // Center-to-center distance of the holes in the diagonal push rods.
-  #define DELTA_DIAGONAL_ROD 319.5        // (mm)
+  #define DELTA_DIAGONAL_ROD 377.00      // (mm)
 
   // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 380.00             // (mm) Get this value from G33 auto calibrate
+  #define DELTA_HEIGHT 473.00             // (mm) Get this value from G33 auto calibrate
 
   #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
 
   // Horizontal distance bridged by diagonal push rods when effector is centered.
-  #define DELTA_RADIUS 150              // (mm) Get this value from G33 auto calibrate
+  #define DELTA_RADIUS 190.00              // (mm) Get this value from G33 auto calibrate
 
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
@@ -1032,7 +1032,7 @@
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
 //#define USE_XMIN_PLUG
 //#define USE_YMIN_PLUG
-//#define USE_ZMIN_PLUG // a Z probe
+#define USE_ZMIN_PLUG // a Z probe
 //#define USE_IMIN_PLUG
 //#define USE_JMIN_PLUG
 //#define USE_KMIN_PLUG
@@ -1050,7 +1050,7 @@
 //#define USE_WMAX_PLUG
 
 // Enable pullup for all endstops to prevent a floating state
-//#define ENDSTOPPULLUPS
+#define ENDSTOPPULLUPS
 #if DISABLED(ENDSTOPPULLUPS)
   // Disable ENDSTOPPULLUPS to set pullups individually
   //#define ENDSTOPPULLUP_XMIN
@@ -1305,7 +1305,7 @@
  *      - normally-closed switches to GND and D32.
  *      - normally-open switches to 5V and D32.
  */
-//#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
+#define Z_MIN_PROBE_PIN PA2 // DOUG SET PIN //Pin 32 is the RAMPS default
 
 /**
  * Probe Type
@@ -1576,7 +1576,7 @@
 #define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING          10 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT          -10 // DOUG Changed - Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
@@ -1598,7 +1598,7 @@
  * These options are most useful for the BLTouch probe, but may also improve
  * readings with inductive probes and piezo sensors.
  */
-//#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+#define PROBING_HEATERS_OFF       // DOUG TURNED ON FOR DEBUG //Turn heaters off when probing
 #if ENABLED(PROBING_HEATERS_OFF)
   //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
   //#define WAIT_FOR_HOTEND         // Wait for hotend to heat back up between probes (to improve accuracy & prevent cold extrude)
@@ -1685,7 +1685,7 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_HOMING_HEIGHT  10      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
 //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
@@ -1743,12 +1743,12 @@
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
   #define MIN_SOFTWARE_ENDSTOP_Z
-  #define MIN_SOFTWARE_ENDSTOP_I
-  #define MIN_SOFTWARE_ENDSTOP_J
-  #define MIN_SOFTWARE_ENDSTOP_K
-  #define MIN_SOFTWARE_ENDSTOP_U
-  #define MIN_SOFTWARE_ENDSTOP_V
-  #define MIN_SOFTWARE_ENDSTOP_W
+  //#define MIN_SOFTWARE_ENDSTOP_I  //Doug removed these
+  //#define MIN_SOFTWARE_ENDSTOP_J
+  //#define MIN_SOFTWARE_ENDSTOP_K
+  //#define MIN_SOFTWARE_ENDSTOP_U
+  //#define MIN_SOFTWARE_ENDSTOP_V
+  //#define MIN_SOFTWARE_ENDSTOP_W
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1757,12 +1757,12 @@
   #define MAX_SOFTWARE_ENDSTOP_X
   #define MAX_SOFTWARE_ENDSTOP_Y
   #define MAX_SOFTWARE_ENDSTOP_Z
-  #define MAX_SOFTWARE_ENDSTOP_I
-  #define MAX_SOFTWARE_ENDSTOP_J
-  #define MAX_SOFTWARE_ENDSTOP_K
-  #define MAX_SOFTWARE_ENDSTOP_U
-  #define MAX_SOFTWARE_ENDSTOP_V
-  #define MAX_SOFTWARE_ENDSTOP_W
+  //#define MAX_SOFTWARE_ENDSTOP_I  //Doug - removed these
+  //#define MAX_SOFTWARE_ENDSTOP_J
+  //#define MAX_SOFTWARE_ENDSTOP_K
+  //#define MAX_SOFTWARE_ENDSTOP_U
+  //#define MAX_SOFTWARE_ENDSTOP_V
+  //#define MAX_SOFTWARE_ENDSTOP_W
 #endif
 
 #if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
@@ -1784,10 +1784,10 @@
  */
 #define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
-  #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
+  #define FIL_RUNOUT_ENABLED_DEFAULT false // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   2          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
 
-  #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.
+  #define FIL_RUNOUT_STATE LOW        // Pin state indicating that filament is NOT present.
   #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
   //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
   //#define WATCH_ALL_RUNOUT_SENSORS      // Execute runout script on any triggering sensor, not only for the active extruder.
@@ -1829,7 +1829,7 @@
   // Commands to execute on filament runout.
   // With multiple runout sensors use the %c placeholder for the current tool in commands (e.g., "M600 T%c")
   // NOTE: After 'M412 H1' the host handles filament runout and this script does not apply.
-  #define FILAMENT_RUNOUT_SCRIPT "M600"
+  #define FILAMENT_RUNOUT_SCRIPT "M600 T%c"
 
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
@@ -1899,7 +1899,7 @@
 /**
  * Auto-leveling needs preheating
  */
-//#define PREHEAT_BEFORE_LEVELING
+//#define PREHEAT_BEFORE_LEVELING  //DOUG TURN ON AFTER DEBUG
 #if ENABLED(PREHEAT_BEFORE_LEVELING)
   //#define LEVELING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
   #define LEVELING_BED_TEMP     75
@@ -1919,7 +1919,7 @@
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
   // Set a height for the start of manual adjustment
@@ -2405,7 +2405,7 @@
   #define PASSWORD_LENGTH 4                 // (#) Number of digits (1-9). 3 or 4 is recommended
   #define PASSWORD_ON_STARTUP
   #define PASSWORD_UNLOCK_GCODE             // Unlock with the M511 P<password> command. Disable to prevent brute-force attack.
-  #define PASSWORD_CHANGE_GCODE             // Change the password with M512 P<old> S<new>.
+  #define PASSWORD_CHANGE_GCODE UBL            // Change the password with M512 P<old> S<new>.
   //#define PASSWORD_ON_SD_PRINT_MENU       // This does not prevent gcodes from running
   //#define PASSWORD_AFTER_SD_PRINT_END
   //#define PASSWORD_AFTER_SD_PRINT_ABORT
@@ -2556,7 +2556,7 @@
 // If you have a speaker that can produce tones, enable it here.
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
-//#define SPEAKER
+#define SPEAKER
 
 //
 // The duration and frequency for the UI feedback sound.
@@ -3348,12 +3348,12 @@
  * Set this manually if there are extra servos needing manual control.
  * Set to 0 to turn off servo support.
  */
-//#define NUM_SERVOS 3 // Note: Servo index starts with 0 for M280-M282 commands
+#define NUM_SERVOS 3 // Note: Servo index starts with 0 for M280-M282 commands
 
 // (ms) Delay before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
 // If the servo can't reach the requested position, increase it.
-#define SERVO_DELAY { 300 }
+#define SERVO_DELAY { 300, 300, 300 }
 
 // Only power servos during movement, otherwise leave off to prevent jitter
 //#define DEACTIVATE_SERVOS_AFTER_MOVE
