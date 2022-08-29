@@ -38,7 +38,7 @@
   #include "../lcd/extui/ui_api.h"
 #endif
 
-//#define FILAMENT_RUNOUT_SENSOR_DEBUG
+#define FILAMENT_RUNOUT_SENSOR_DEBUG  //Doug ENabled
 #ifndef FILAMENT_RUNOUT_THRESHOLD
   #define FILAMENT_RUNOUT_THRESHOLD 5
 #endif
